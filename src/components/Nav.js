@@ -4,7 +4,7 @@ export default function Nav() {
   return (
     <div>
       <nav className="nav--bar">
-        <h1 className="logo">AltSchool Assignment</h1>
+        <h1 className="logo"><Link to="/">AltSchool Assignment</Link></h1>
         <ul>
           <li>
             <Link to="/">Home</Link>

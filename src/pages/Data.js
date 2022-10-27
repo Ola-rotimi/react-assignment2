@@ -20,6 +20,11 @@ export default function Data() {
       });
   }, [page]);
 
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  const pages = [...Array(10).keys()].map((num) => num + 1);
 
   const handleNext = () => {
     setPage(page + 1);
@@ -29,19 +34,24 @@ export default function Data() {
     setPage(page - 1);
   };
 
-  return (<>
-  <div className="profile">
-    {detail.map(CreateProfile)}
-  </div>
-  <div className="pagination">
-    <button onClick={handlePrev} disabled={page === 1}>
-      Prev
-    </button>
-    
-    <button onClick={handleNext} disabled={page === 10}>
-      Next
-    </button>
-  </div>
-  </>);
-  
+  return (
+    <>
+      <div className="profile">{detail.map(CreateProfile)}</div>
+      <div className="pagination">
+        <button onClick={handlePrev} disabled={page === 1}>
+          Prev
+        </button>
+
+        {pages.map((num) => (
+          <button key={num} onClick={() => setPage((page) => num)} disabled={page === num}>
+            {num}
+          </button>
+        ))}
+
+        <button onClick={handleNext} disabled={page === 10}>
+          Next
+        </button>
+      </div>
+    </>
+  );
 }
